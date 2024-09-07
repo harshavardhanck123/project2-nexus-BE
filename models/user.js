@@ -1,19 +1,29 @@
-const mongoose=require('mongoose')
+// models/User.js
+const mongoose = require('mongoose');
+const validate= require('validator')
 
-const UserSchema=new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-      },
-      password: {
-        type: String,
-        required: true,
-      },
-      name:{
-        type: String,
-        required:true
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength:6,
+    validate(value) {
+      if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
+        throw new CustomError(httpStatus.BAD_REQUEST, "Password must contain at least one letter and one number");
       }
-})
+    }
+  },
+});
 
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
