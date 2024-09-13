@@ -45,7 +45,7 @@ jobs:
         run: |
             ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.AWS_EC2_IP }} << 'EOF'
               # Navigate to your app directory or clone it if not present
-              cd /home/ubuntu || git clone https://github.com/your-username/your-repository.git
+              cd /home/ubuntu/project2-nexus-BE || git clone https://github.com/your-username/your-repository.git
               cd your-repository
               
               # Pull the latest changes
