@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Scalar value is correct here
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]  # List values are correctly formatted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20  # Correct scalar use
+
+    - name: Install dependencies
+      run: npm install  # Scalar value for the 'run' field
+
+    - name: Run tests
+      run: npm test
+
+    - name: Build project
+      run: npm run build
+
+    - name: Deploy to production
+      if: github.ref == 'refs/heads/main'
+      run: echo "Deploying to production..."
