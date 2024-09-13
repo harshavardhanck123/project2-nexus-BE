@@ -45,7 +45,7 @@ const app = require('./app');
 const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server is connected and running on http://127.0.0.1:${PORT}`);
+  console.log(`Server is connected and running on http://0.0.0.0:${PORT}`);
 });
 
   
