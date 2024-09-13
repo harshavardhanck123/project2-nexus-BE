@@ -3,7 +3,7 @@ const User = require('../models/user');
 const { createUser } = require('../services/user.service');
 
 // Mock the User model
-jest.mock('../models/User');
+jest.mock('../models/user');
 
 describe('User Service - createUser', () => {
   it('should create a user successfully', async () => {
